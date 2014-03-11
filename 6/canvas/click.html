@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+before
+<div>
+<canvas height="600" width="600" id="c"
+	style="border:1px solid black">
+</canvas>
+</div>
+after
+
+<script>
+ var c = document.getElementById("c");
+ var ctx = c.getContext("2d");
+ var clicked = function(e) {
+   e.preventDefault();
+   //ctx.beginPath(); // then comment out this line
+   ctx.arc(e.offsetX, e.offsetY,10,0,2*Math.PI);
+   ctx.fillStyle="#ff0000";
+   
+   ctx.stroke();
+   ctx.fill();
+ }
+
+ c.addEventListener("click",clicked);
+
+</script>
+</html>
