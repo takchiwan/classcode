@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <svg class="where" id="s" height=400 width=400>
+     <!--  <circle id="c1" cx=50 cy=200 r=10 fill="red"></circle> -->
+    </svg>
+    <input type="submit" id="go" value="go">
+<script>
+ //var c1 = document.createElement("circle");
+
+ var addCircle = function(s,x,y,r,c){
+ var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+ c1.setAttribute('id','c1');
+ c1.setAttribute('cx',x);
+ c1.setAttribute('cy',y);
+ c1.setAttribute('r',r);
+ c1.setAttribute('fill',c);
+ c1.addEventListener('click',cClick);
+ s.appendChild(c1);
+ }
+
+var move = function() {
+   var cs = document.getElementsByTagName("circle");
+   for (var i=0;i<cs.length;i++) {
+     var x = parseInt(cs[i].getAttribute('cx'));
+     var y = parseInt(cs[i].getAttribute('cy'));
+     var r = parseInt(cs[i].getAttribute('r'));
+
+     x = x + 2*Math.random()-1;
+     y = y + 3*Math.random()-1;
+     r = r + 2*Math.random()-1;
+     
+     if (r<5){ r = 20;}
+
+     cs[i].setAttribute('cx',x);
+     cs[i].setAttribute('cy',y);
+     cs[i].setAttribute('r',r);
+   }
+}
+ var cClick = function(e) {
+   e.preventDefault();
+   console.log("In circle clic");
+   
+   var c = this.getAttribute('fill');
+   if (c=='red') {
+     c='green';
+     this.setAttribute('fill',c);
+   } else if (c=='green') {
+     c = 'blue';
+     this.setAttribute('fill',c);
+   } else {
+     this.remove();
+   }
+ }
+
+ var clicked = function(e) {
+   e.preventDefault();
+   console.log("In svg clic");
+   if (e.toElement != this) {return ;}
+   var r = 5+Math.random()*20;
+   addCircle(s,e.offsetX,e.offsetY,r,'red');
+ }
+
+ var t =0;
+ var go = function(e) {
+e.preventDefault();
+   if (t==0){
+     t = setInterval(move,100);
+   } else {
+     clearInterval(t);
+     t=0;
+   }
+ }
+
+ var s = document.getElementById("s");
+ s.addEventListener("click",clicked);
+ var b = document.getElementById("go");
+ b.addEventListener('click',go);
+</script>
+  </body>
+</html>

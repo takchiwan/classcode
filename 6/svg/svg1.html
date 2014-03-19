@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid;}
+     .where {position:fixed;}
+    </style>
+  </head>
+  <body>
+    <svg class="where" id="s" height=400 width=400>
+     <!--  <circle id="c1" cx=50 cy=200 r=10 fill="red"></circle> -->
+    </svg>
+<script>
+ //var c1 = document.createElement("circle");
+ var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+ c1.setAttribute('id','c1');
+ c1.setAttribute('cx',100);
+ c1.setAttribute('cy',100);
+ c1.setAttribute('r',30);
+ c1.setAttribute('fill','red');
+
+ var s = document.getElementById("s");
+ s.appendChild(c1);
+</script>
+  </body>
+</html>
