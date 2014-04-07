@@ -1,6 +1,10 @@
 
 l = [1,2,3,4,5];
 
+var printargs = function() {
+    console.log(arguments);
+}
+
 var square = function(x) {
     return x*x;
 }
@@ -23,7 +27,7 @@ var filter = function(l,f) {
     result =[] ;
     for (var i=0;i < l.length;i++){
 	if (f(l[i])) {
-	result.push( l[i] );
+	result.push( l[i],i,l );
 	}
     }
     return result;

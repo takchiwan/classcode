@@ -1,4 +1,8 @@
 
+var paramshow = function() {
+    console.log(arguments);
+}
+
 
 console.log("HELLO");
 
@@ -26,7 +30,7 @@ var reduce = function(l,f,init) {
 var map = function(l, f) {
     result=[];
     for (var i = 0; i < l.length; i++ ){
-	result.push(f(l[i]));
+	result.push(f(l[i],i,l));
     }
     return result;
 }
@@ -35,7 +39,7 @@ var filter = function(l, f) {
     result=[];
     for (var i = 0; i < l.length; i++ ){
 	if (f(l[i])) {
-	    result.push(l[i]);
+	    result.push(l[i],i,l);
 	}
     }
     return result;
