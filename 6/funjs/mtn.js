@@ -23,12 +23,3 @@ bigdiffs = _.filter(diffs,function(n){
 //console.log(bigdiffs.length);
 
 
-
-var myzip1 = function(l) {
-    var tmp = _.zip(l,l.slice(1));
-    return _.take(tmp,tmp.length-1);
-}
-
-var zipc = _.curry(function(a,b){
-    return _.zip(a,b);
-})
